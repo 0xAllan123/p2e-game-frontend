@@ -1,7 +1,7 @@
 import { web3 } from "@project-serum/anchor";
 import * as anchor from "@project-serum/anchor";
 import axios from "axios";
-import { IDL } from "./p2e";
+import { IDL } from "./jackpot";
 import {
   PublicKey,
   SystemProgram,
