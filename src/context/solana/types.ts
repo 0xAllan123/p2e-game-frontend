@@ -6,7 +6,7 @@ export const VAULT_SEED = "vault-authority";
 export const GAME_SEED = "game-authority";
 export const RANDOM_SEED = "random";
 
-export const JACKPOT_PROGRAM_ID = new PublicKey(
+export const P2E_PROGRAM_ID = new PublicKey(
   "E13jNxzoQbUuyaZ9rYJUdRAirYZKU75NJNRV9CHdDhHE"
 );
 export const GRAVE_PROGRAM_ID = new PublicKey(

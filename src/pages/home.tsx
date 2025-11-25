@@ -58,73 +58,115 @@ export default function Home(props: { isMute: boolean; setIsMute: Function }) {
     getTotalCount();
   }, [gameData]);
 
+  const totalWagered =
+    typeof data === "number" ? (totalWins * data * 1.04).toLocaleString() : "";
+  const totalWon =
+    typeof data === "number" ? (totalWins * data).toLocaleString() : "";
+
   return (
-    <div className="flex min-h-[100vh] bg-bg bg-cover bg-no-repeat w-full">
+    <div className="flex min-h-screen w-full bg-bg bg-cover bg-no-repeat">
       <Sidebar />
-      <main className="xl:w-[calc(100%-280px)] w-full flex flex-col ml-[80px] lg:ml-[280px] overflow-x-hidden">
-        <div className="mt-0 flex-col relative w-full pb-20">
-          <div className="h-[280px] md:h-[480px] overflow-hidden">
-            <img src="/img/home-banner.jpg" alt="" />
+      <main className="xl:w-[calc(100%-260px)] w-full flex flex-col ml-[80px] lg:ml-[260px] overflow-x-hidden">
+        <div className="relative w-full pb-16">
+          <div className="relative h-[260px] md:h-[420px] overflow-hidden rounded-b-3xl shadow-drop-shadow">
+            <img
+              src="/img/home-banner.jpg"
+              alt="SlowRUG p2e banner"
+              className="h-full w-full object-cover opacity-70"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-black-80 via-black-60/60 to-transparent" />
+            <div className="absolute inset-y-0 left-0 flex flex-col justify-center px-6 md:px-12 space-y-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white-60">
+                Solana PvP p2e
+              </p>
+              <h2 className="text-2xl md:text-3xl lg:text-[32px] font-bold text-white-100 max-w-xl leading-snug">
+                High-voltage, on-chain p2e games with transparent odds.
+              </h2>
+              <p className="text-sm md:text-base text-white-70 max-w-lg">
+                Track real-time stats, review recent winners, and jump into your
+                next round in just a few clicks.
+              </p>
+            </div>
           </div>
-          <div className="pl-4 pr-4">
-            <p className="font-font-mono text-[26.7px] font-normal mt-[38px] text-white-100 leading-10">
+
+          <div className="px-4 pt-8 md:px-8">
+            <p className="font-font-mono text-[22px] md:text-[26px] font-normal text-white-100 leading-9">
               Statistics
             </p>
-            <div className="flex flex-wrap mt-[18px] rounded-[8px] gap-[13px]">
-              <div className=" relative flex flex-col h-[205px] lg:w-[calc((100%-40px)/3)] w-full rounded-[8px] border-[1.33px] border-[#FFFFFF1A]">
-                <div className="mt-6 ml-6 bg-[#444CE4] rounded-[8px] w-[46px] h-[46px] "></div>
-                <p className="text-[32px] text-white-100 font-bold leading-[52px] mt-[13.35px] ml-6">
-                  {typeof data === "number"
-                    ? "$" + (totalWins * data * 1.04).toLocaleString()
-                    : "---"}
-                </p>
-                <p className="text-md text-white-100 font-normal leading-[26px] mt-[10.73px] ml-6">
-                  Amount Wagered
-                </p>
+            <div className="mt-4 flex flex-wrap gap-4 rounded-2xl">
+              <div className="relative flex h-[200px] w-full flex-col justify-between rounded-2xl border border-white-10 bg-white-5/40 px-6 py-5 shadow-subtle-shadow1 backdrop-blur-md lg:w-[calc((100%-32px)/3)]">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary-6/90 shadow-subtle-shadow1" />
+                    <span className="text-xs font-medium uppercase tracking-[0.16em] text-white-60">
+                      Platform Volume
+                    </span>
+                  </div>
+                  <Tripledot />
+                </div>
+                <div>
+                  <p className="mt-4 text-[30px] font-semibold leading-[42px] text-white-100">
+                    {totalWagered ? `$${totalWagered}` : "---"}
+                  </p>
+                  <p className="mt-2 text-sm font-normal leading-6 text-white-70">
+                    Amount wagered across all games
+                  </p>
+                </div>
               </div>
-              <div className=" relative flex flex-col h-[205px] lg:w-[calc((100%-40px)/3)] w-full rounded-[8px] border-[1.33px] border-[#FFFFFF1A]">
-                <div className="flex justify-center items-center mt-6 ml-6 bg-[#F257A0] rounded-[8px] w-[46px] h-[46px]"></div>
-                <p className="text-[32px] text-white-100 font-bold leading-[52px] mt-[13.35px] ml-6">
-                  {totalCount.toLocaleString()}
-                </p>
-                <p className="text-md text-white-100 font-normal leading-[26px] mt-[10.73px] ml-6">
-                  Bets placed All Time
-                </p>
+
+              <div className="relative flex h-[200px] w-full flex-col justify-between rounded-2xl border border-white-10 bg-white-5/40 px-6 py-5 shadow-subtle-shadow1 backdrop-blur-md lg:w-[calc((100%-32px)/3)]">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#F257A0] shadow-subtle-shadow1" />
+                    <span className="text-xs font-medium uppercase tracking-[0.16em] text-white-60">
+                      Bets Placed
+                    </span>
+                  </div>
+                  <Roundarrow />
+                </div>
+                <div>
+                  <p className="mt-4 text-[30px] font-semibold leading-[42px] text-white-100">
+                    {totalCount.toLocaleString()}
+                  </p>
+                  <p className="mt-2 text-sm font-normal leading-6 text-white-70">
+                    Total bets placed all time
+                  </p>
+                </div>
               </div>
-              <div className=" relative flex flex-col h-[205px] lg:w-[calc((100%-40px)/3)] w-full rounded-[8px] border-[1.33px] border-[#FFFFFF1A]">
-                <div className="flex justify-center items-center mt-6 ml-6 bg-[#7A5AF8] rounded-[8px] w-[46px] h-[46px]"></div>
-                <p className="text-[32px] text-white-100 font-bold leading-[52px] mt-[13.35px] ml-6">
-                  {typeof data === "number"
-                    ? "$" + (totalWins * data).toLocaleString()
-                    : "---"}
-                </p>
-                <p className="text-md text-white-100 font-normal leading-[26px] mt-[10.73px] ml-6">
-                  Total Wins
-                </p>
+
+              <div className="relative flex h-[200px] w-full flex-col justify-between rounded-2xl border border-white-10 bg-white-5/40 px-6 py-5 shadow-subtle-shadow1 backdrop-blur-md lg:w-[calc((100%-32px)/3)]">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#7A5AF8] shadow-subtle-shadow1" />
+                    <span className="text-xs font-medium uppercase tracking-[0.16em] text-white-60">
+                      Payouts
+                    </span>
+                  </div>
+                  <Tripledot />
+                </div>
+                <div>
+                  <p className="mt-4 text-[30px] font-semibold leading-[42px] text-white-100">
+                    {totalWon ? `$${totalWon}` : "---"}
+                  </p>
+                  <p className="mt-2 text-sm font-normal leading-6 text-white-70">
+                    Total value won by players
+                  </p>
+                </div>
               </div>
             </div>
-            <p className="font-font-mono text-[26.7px] font-normal mt-[29.36px] text-white-100 leading-10">
-              Recent Player
+
+            <p className="mt-10 font-font-mono text-[22px] md:text-[26px] font-normal text-white-100 leading-9">
+              Recent Players
             </p>
 
-            <div className="w-full overflow-x-auto">
-              <div className="min-w-[650px]">
-                <div className="flex flex-row mt-[19px] mb-2 justify-between">
-                  <p className="w-[200px] text-sm text-[#FFFFFFA8] text-center">
-                    Game
-                  </p>
-                  <p className="w-[250px] text-sm text-[#FFFFFFA8] text-center">
-                    Wallet
-                  </p>
-                  <p className="w-[150px] text-sm text-[#FFFFFFA8] text-center">
-                    Bet
-                  </p>
-                  <p className="w-[150px] text-sm text-[#FFFFFFA8] text-center">
-                    Payout
-                  </p>
-                  <p className="w-[150px] text-sm text-[#FFFFFFA8] text-center">
-                    TX
-                  </p>
+            <div className="mt-4 w-full overflow-x-auto rounded-2xl border border-white-10 bg-white-5/40 shadow-subtle-shadow1 backdrop-blur-md">
+              <div className="min-w-[650px] px-4 py-4">
+                <div className="mb-2 flex flex-row justify-between text-xs font-medium uppercase tracking-[0.16em] text-white-60">
+                  <p className="w-[200px] text-center">Game</p>
+                  <p className="w-[250px] text-center">Wallet</p>
+                  <p className="w-[150px] text-center">Bet</p>
+                  <p className="w-[150px] text-center">Payout</p>
+                  <p className="w-[150px] text-center">TX</p>
                 </div>
                 {recentWinnders &&
                   recentWinnders.length !== 0 &&

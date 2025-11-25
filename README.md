@@ -1,4 +1,4 @@
-# Tower Jackpot Game | Solana 
+# Tower P2E Game | Solana 
 
 ## Requirements
 

@@ -1,7 +1,7 @@
 import { web3 } from "@project-serum/anchor";
 import * as anchor from "@project-serum/anchor";
 import axios from "axios";
-import { IDL } from "./jackpot";
+import { IDL } from "./p2e";
 import {
   PublicKey,
   SystemProgram,
@@ -16,7 +16,7 @@ import {
   EXPER_WALLET,
   GamePool,
   GAME_SEED,
-  JACKPOT_PROGRAM_ID,
+  P2E_PROGRAM_ID,
   JERZY_WALLET,
   TEAM_WALLET,
   VAULT_SEED,
@@ -41,7 +41,7 @@ export const playGame = async (
   let programId;
   let api;
   if (type === "tower") {
-    programId = new anchor.web3.PublicKey(JACKPOT_PROGRAM_ID);
+    programId = new anchor.web3.PublicKey(P2E_PROGRAM_ID);
     api = API_URL;
   }
   else if (type === "grave") {
@@ -125,7 +125,7 @@ export const enterGame = async (
   let programId;
   let api;
   if (type === "tower") {
-    programId = new anchor.web3.PublicKey(JACKPOT_PROGRAM_ID);
+    programId = new anchor.web3.PublicKey(P2E_PROGRAM_ID);
     api = API_URL;
   }
   else if (type === "grave") {
@@ -298,7 +298,7 @@ export const createEnterGameTx = async (
 //   );
 //   const program = new anchor.Program(
 //     IDL as anchor.Idl,
-//     JACKPOT_PROGRAM_ID,
+//     P2E_PROGRAM_ID,
 //     provider
 //   );
 //   try {
